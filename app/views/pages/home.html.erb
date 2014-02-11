@@ -1,0 +1,31 @@
+<script type="text/x-handlebars" data-template-name="todo">
+  <section id="todoapp">
+    <h1>Todo List</h1>
+    {{input type="text" id="new-todo" placeholder="Enter new item" value=newSummary action="createTodo"}}
+
+    <table id="todo-list">
+      <thead>
+        <tr>
+          <td width="100">Completed</td>
+          <td>Todo</td>
+          <td width="100">Delete</td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each itemController="todo_item"}}
+          <tr>
+            <td>{{input type="checkbox" checked=isCompleted class="toggle"}}</td>
+            <td {{bind-attr class="isCompleted:completed isEditing:editing"}} {{action "editTodo" on="doubleClick"}}>
+              {{#if isEditing}}
+                {{edit-todo class="edit" value=summary focus-out="acceptChanges" insert-newline="editingFinished"}}
+              {{else}}
+                {{summary}}
+              {{/if}}
+            </td>
+            <td><button {{action "removeTodo"}} class="destroy"></button></td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </section>
+</script>
