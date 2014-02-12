@@ -8,7 +8,7 @@
         <tr>
           <td width="100">Completed</td>
           <td>Todo</td>
-          <td width="100">Delete</td>
+          <td width="100"></td>
         </tr>
       </thead>
       <tbody>
@@ -22,7 +22,7 @@
                 {{summary}}
               {{/if}}
             </td>
-            <td><button {{action "removeTodo"}} class="destroy"></button></td>
+            <td><button {{action "removeTodo"}} class="destroy">Delete</button></td>
           </tr>
         {{/each}}
       </tbody>

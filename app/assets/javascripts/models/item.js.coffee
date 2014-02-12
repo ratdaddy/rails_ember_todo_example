@@ -2,4 +2,4 @@
 
 Todo.Item = DS.Model.extend
   summary: DS.attr 'string'
-  isCompleted: DS.attr 'boolean'
+  is_completed: DS.attr 'boolean'

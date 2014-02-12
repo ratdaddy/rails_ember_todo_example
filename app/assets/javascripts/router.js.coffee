@@ -5,4 +5,4 @@ Todo.Router.map ->
 
 Todo.TodoRoute = Ember.Route.extend
   model: ->
-    @store.find('todo')
+    @store.find('item')

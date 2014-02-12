@@ -1,21 +1,21 @@
 Todo.Todo = DS.Model.extend
   summary: DS.attr('string'),
-  isCompleted: DS.attr('boolean')
+  is_completed: DS.attr('boolean')
 
 Todo.Todo.FIXTURES = [
  {
    id: 1,
    summary: 'Learn Ember.js',
-   isCompleted: true
+   is_completed: true
  },
  {
    id: 2,
    summary: '...',
-   isCompleted: false
+   is_completed: false
  },
  {
    id: 3,
    summary: 'Profit!',
-   isCompleted: false
+   is_completed: false
  }
 ]

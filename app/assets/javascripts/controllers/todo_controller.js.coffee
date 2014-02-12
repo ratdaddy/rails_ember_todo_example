@@ -4,21 +4,21 @@ Todo.TodoController = Ember.ArrayController.extend
       summary = this.get('newSummary')
       return if !summary.trim()
 
-      todo = @store.createRecord('todo',
+      item = @store.createRecord('item',
         summary: summary
-        isCompleted: false
+        is_completed: false
       )
 
       @set 'newSummary', ''
 
-      todo.save()
+      item.save()
 
 isCompleted = (key, value) ->
   model = @get('model')
 
-  return model.get('isCompleted') unless value?
+  return model.get('is_completed') unless value?
 
-  model.set 'isCompleted', value
+  model.set 'is_completed', value
   model.save()
   value
 
@@ -44,4 +44,4 @@ Todo.TodoItemController = Ember.ObjectController.extend
 
   isEditing: false
 
-  isCompleted: isCompleted.property('model.isCompleted')
+  isCompleted: isCompleted.property('model.is_completed')
