@@ -1,6 +1,6 @@
-Todo.TodoController = Ember.ArrayController.extend
+Todo.ItemsController = Ember.ArrayController.extend
   actions:
-    createTodo: ->
+    createItem: ->
       summary = this.get('newSummary')
       return if !summary.trim()
 
@@ -22,9 +22,9 @@ isCompleted = (key, value) ->
   model.save()
   value
 
-Todo.TodoItemController = Ember.ObjectController.extend
+Todo.ItemController = Ember.ObjectController.extend
   actions:
-    editTodo: ->
+    editItem: ->
       @set 'isEditing', true
 
     editingFinished: ->
@@ -33,14 +33,14 @@ Todo.TodoItemController = Ember.ObjectController.extend
     acceptChanges: ->
       @set 'isEditing', false
       if Ember.isEmpty(@get('model.summary'))
-        @send 'removeTodo'
+        @send 'removeItem'
       else
         @get('model').save()
 
-    removeTodo: ->
-      todo = @get('model')
-      todo.deleteRecord()
-      todo.save()
+    removeItem: ->
+      item = @get('model')
+      item.deleteRecord()
+      item.save()
 
   isEditing: false
 

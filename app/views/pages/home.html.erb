@@ -1,7 +1,7 @@
-<script type="text/x-handlebars" data-template-name="todo">
+<script type="text/x-handlebars" data-template-name="items">
   <section id="todoapp">
     <h1>Todo List</h1>
-    {{input type="text" id="new-todo" placeholder="Enter new item" value=newSummary action="createTodo"}}
+    {{input type="text" id="new-item" placeholder="Enter new item" value=newSummary action="createItem"}}
 
     <table id="todo-list">
       <thead>
@@ -12,17 +12,17 @@
         </tr>
       </thead>
       <tbody>
-        {{#each itemController="todo_item"}}
+        {{#each itemController="item"}}
           <tr>
             <td>{{input type="checkbox" checked=isCompleted class="toggle"}}</td>
-            <td {{bind-attr class="isCompleted:completed isEditing:editing"}} {{action "editTodo" on="doubleClick"}}>
+            <td {{bind-attr class="isCompleted:completed isEditing:editing"}} {{action "editItem" on="doubleClick"}}>
               {{#if isEditing}}
-                {{edit-todo class="edit" value=summary focus-out="acceptChanges" insert-newline="editingFinished"}}
+                {{edit-item class="edit" value=summary focus-out="acceptChanges" insert-newline="editingFinished"}}
               {{else}}
                 {{summary}}
               {{/if}}
             </td>
-            <td><button {{action "removeTodo"}} class="destroy">Delete</button></td>
+            <td><button {{action "removeItem"}} class="destroy">Delete</button></td>
           </tr>
         {{/each}}
       </tbody>

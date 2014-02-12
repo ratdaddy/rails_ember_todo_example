@@ -20,21 +20,20 @@
 }
 
 #todo-list {
-  width: 100%
-}
+  width: 100%;
 
-#todo-list td input[type="checkbox"],
-#todo-list td button {
-  display: block;
-  margin: 0 auto;
-}
+  td input[type="checkbox"],
+  button {
+    display: block;
+    margin: 0 auto;
+  }
 
-#todo-list td.completed {
-  text-decoration: line-through;
-}
+  td.completed {
+    text-decoration: line-through;
+  }
 
-#todo-list input.edit {
-  margin: 0;
-  height: 1.5rem;
+  input.edit {
+    margin: 0;
+    height: 1.5rem;
+  }
 }
-

@@ -1,8 +1,8 @@
 # For more information see: http://emberjs.com/guides/routing/
 
 Todo.Router.map ->
-  @resource 'todo', path: '/'
+  @resource 'items', path: '/'
 
-Todo.TodoRoute = Ember.Route.extend
+Todo.ItemsRoute = Ember.Route.extend
   model: ->
     @store.find('item')

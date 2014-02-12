@@ -3,8 +3,8 @@
 #= require foundation
 #= require turbolinks
 #
-#= require ./lib/handlebars-v1.1.2
-#= require ./lib/ember
+#= require handlebars
+#= require ember
 #= require ./lib/ember-data
 #= require_self
 #= require todo
