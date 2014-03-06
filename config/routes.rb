@@ -1,4 +1,5 @@
 Todo::Application.routes.draw do
+  devise_for :users, sign_out_via: [:get, :delete]
   resources :items
 
   get 'pages/home'
