@@ -1,5 +1,5 @@
 Todo::Application.routes.draw do
-  devise_for :users, sign_out_via: [:get, :delete]
+  devise_for :users, sign_out_via: [:get, :delete], controllers: { sessions: 'users/sessions' }
   resources :items
 
   get 'pages/home'
