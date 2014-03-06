@@ -20,7 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :last_sign_in_ip
 
       ## TokenAuthenticatable
-      t.string   :authentication_token
+      t.string   :authentication_token, index: true
 
       ## Confirmable
       # t.string   :confirmation_token

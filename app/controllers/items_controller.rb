@@ -1,22 +1,23 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user_from_token!
   before_filter :authenticate_user!
+  before_filter :authorize_for_item!, only: [:update, :destroy]
   respond_to :json
 
   def index
-    respond_with Item.all
+    respond_with current_user.items
   end
 
   def create
-    respond_with Item.create(item_params)
+    respond_with current_user.items.create(item_params)
   end
 
   def update
-    respond_with Item.find(params[:id]).update_attributes(item_params)
+    respond_with @item.update_attributes(item_params)
   end
 
   def destroy
-    respond_with Item.destroy(params[:id])
+    respond_with @item.destroy
   end
 
 private
@@ -26,10 +27,17 @@ private
 
   def authenticate_user_from_token!
     user_token = params[:authentication_token].presence
-    user       = user_token && User.find_by_authentication_token(user_token.to_s)
+    user = user_token && User.find_by_authentication_token(user_token.to_s)
 
-    if user
-      sign_in user, store: false
+    sign_in user, store: false if user
+  end
+
+  def authorize_for_item!
+    @item = Item.find(params[:id])
+    unless @item.user == current_user
+      render json: { error: 'You cannot access this item' }, status: :forbidden
     end
+  rescue
+    render json: { error: 'Item not found' }, status: :not_found
   end
 end
