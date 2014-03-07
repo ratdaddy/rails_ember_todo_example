@@ -1,9 +1,13 @@
 Todo::Application.routes.draw do
-  devise_for :users, sign_out_via: [:get, :delete], controllers: { sessions: 'users/sessions' }
+  devise_for :users, sign_out_via: [:get, :delete], controllers: {
+        sessions: 'users/sessions',
+        registrations: 'users/registrations',
+        passwords: 'users/passwords',
+  }
   resources :items
 
-  get 'pages/home'
-  root 'pages#home'
+  get 'pages/app'
+  root 'pages#app'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

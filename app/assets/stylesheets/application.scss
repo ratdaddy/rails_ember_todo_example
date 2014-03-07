@@ -14,9 +14,26 @@
  */
 
 @import "foundation/components/grid";
+@import "foundation/components/buttons";
 
-#todoapp {
+#todoapp, #container {
   @include grid-row();
+}
+
+#session-form {
+  @include grid-column($columns: 6, $offset: 3);
+
+  input[name="commit"] {
+    @include button;
+  }
+}
+
+#navigation {
+  margin: 20px 0;
+
+  a {
+    float: right;
+  }
 }
 
 #todo-list {

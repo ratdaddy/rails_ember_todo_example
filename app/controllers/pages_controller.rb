@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
-  def home
+  before_filter :authenticate_user!
+
+  def app
+    render layout: 'emberapp'
   end
 end

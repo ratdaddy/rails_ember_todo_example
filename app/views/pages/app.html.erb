@@ -1,5 +1,8 @@
 <script type="text/x-handlebars" data-template-name="items">
   <section id="todoapp">
+    <section id="navigation">
+      <%= link_to 'Sign out', destroy_user_session_path %>
+    </section>
     <h1>Todo List</h1>
     {{input type="text" id="new-item" placeholder="Enter new item" value=newSummary action="createItem"}}
 
