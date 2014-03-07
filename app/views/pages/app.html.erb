@@ -4,35 +4,44 @@
       <%= link_to 'Sign out', destroy_user_session_path %>
     </section>
     <h1>Todo List</h1>
-    {{input type="text" id="new-item" placeholder="Enter new item" value=newSummary action="createItem"}}
 
-    <table id="todo-list">
-      <thead>
-        <tr>
-          <td width="100">Completed</td>
-          <td>Todo</td>
-          <td>Priority</td>
-          <td>Due Date</td>
-          <td width="100"></td>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each itemController="item"}}
-          <tr>
-            <td>{{input type="checkbox" checked=isCompleted class="toggle"}}</td>
-            <td {{bind-attr class="isCompleted:completed isEditing:editing"}} {{action "editItem" on="doubleClick"}}>
-              {{#if isEditing}}
-                {{edit-item class="edit" value=summary focus-out="acceptChanges" insert-newline="editingFinished"}}
-              {{else}}
-                {{summary}}
-              {{/if}}
-            </td>
-            <td>{{priority}}</td>
-            <td>{{due_date}}</td>
-            <td><button {{action "removeItem"}} class="destroy">Delete</button></td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+    <div class="item-row header-row">
+      <div class="item-completed">Done</div>
+      <div class="item-summary"></div>
+      <div class="item-priority">Priority</div>
+      <div class="item-due-date">Due</div>
+    </div>
+
+    <div class="item-row">
+      <div class="item-completed"></div>
+      <div class="item-summary">
+        {{input type="text" id="new-item" placeholder="Enter new item" value=newSummary action="createItem"}}
+      </div>
+      <div class="item-priority">
+        {{view Ember.Select content=priorities value=newPriority}}
+      </div>
+      <div class="item-due-date">
+        {{input type="text" placeholder="Enter date" value=newDueDate}}
+      </div>
+      <div class="item-action">
+        <button {{action "createItem"}}>Create</button>
+      </div>
+    </div>
+
+    {{#each itemController="item"}}
+      <div class="item-row">
+        <div class="item-completed">{{input type="checkbox" checked=isCompleted class="toggle"}}</div>
+        <div class="item-summary" {{bind-attr class="isCompleted:completed isEditing:editing"}} {{action "editItem" on="doubleClick"}}>
+          {{#if isEditing}}
+            {{edit-item class="edit" value=summary focus-out="acceptChanges" insert-newline="editingFinished"}}
+          {{else}}
+            {{summary}}
+          {{/if}}
+        </div>
+        <div class="item-priority">{{priority}}</div>
+        <div class="item-due-date">{{dueDateString}}</div>
+        <div class="item-action"><button {{action "removeItem"}} class="destroy">Delete</button></div>
+      </div>
+    {{/each}}
   </section>
 </script>

@@ -24,7 +24,7 @@
   @include grid-column($columns: 6, $offset: 3);
 
   input[name="commit"] {
-    @include button;
+    @include button($radius: true);
   }
 }
 
@@ -36,21 +36,39 @@
   }
 }
 
-#todo-list {
-  width: 100%;
+.header-row {
+  padding: 7px 0;
+  background-color: #ddd;
+  font-weight: bold;
+}
 
-  td input[type="checkbox"],
-  button {
-    display: block;
-    margin: 0 auto;
+.item-row {
+  @include grid-row();
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+
+  .item-completed {
+    @include grid-column(1);
+    padding-top: 7px;
   }
-
-  td.completed {
-    text-decoration: line-through;
+  .item-summary {
+    @include grid-column(7);
+    padding-top: 7px;
   }
+  .item-priority {
+    @include grid-column(1);
+    padding-top: 7px;
+  }
+  .item-due-date {
+    @include grid-column(2);
+    padding-top: 7px;
+  }
+  .item-action {
+    @include grid-column(1);
 
-  input.edit {
-    margin: 0;
-    height: 1.5rem;
+    button {
+      @include button($padding: $button-sml, $radius: true, $full-width: true);
+      padding: 7px 0;
+    }
   }
 }
