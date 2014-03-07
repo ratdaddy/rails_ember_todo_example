@@ -22,7 +22,12 @@ class ItemsController < ApplicationController
 
 private
   def item_params
-    params.require(:item).permit(:summary, :is_completed)
+    params.require(:item).permit(
+      :summary,
+      :is_completed,
+      :due_date,
+      :priority,
+    )
   end
 
   def authenticate_user_from_token!

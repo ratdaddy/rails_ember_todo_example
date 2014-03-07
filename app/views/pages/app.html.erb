@@ -11,6 +11,8 @@
         <tr>
           <td width="100">Completed</td>
           <td>Todo</td>
+          <td>Priority</td>
+          <td>Due Date</td>
           <td width="100"></td>
         </tr>
       </thead>
@@ -25,6 +27,8 @@
                 {{summary}}
               {{/if}}
             </td>
+            <td>{{priority}}</td>
+            <td>{{due_date}}</td>
             <td><button {{action "removeItem"}} class="destroy">Delete</button></td>
           </tr>
         {{/each}}

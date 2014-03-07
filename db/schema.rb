@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20140306180209) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.date     "due_date"
+    t.integer  "priority"
   end
 
   add_index "items", ["user_id"], name: "index_items_on_user_id"

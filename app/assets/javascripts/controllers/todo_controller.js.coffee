@@ -2,11 +2,15 @@ Todo.ItemsController = Ember.ArrayController.extend
   actions:
     createItem: ->
       summary = this.get('newSummary')
+      due_date = Date.today()
+      priority = 0
       return if !summary.trim()
 
       item = @store.createRecord('item',
         summary: summary
         is_completed: false
+        due_date: due_date
+        priority: priority
       )
 
       @set 'newSummary', ''

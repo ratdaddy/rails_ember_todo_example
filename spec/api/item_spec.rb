@@ -10,6 +10,9 @@ describe 'Item API' do
       expect(response).to be_success
       expect(json['items'][0]['summary']).to eq(item.summary)
       expect(json['items'][0]['is_completed']).to eq(item.is_completed)
+      expect(json['items'][0]['priority']).to eq(item.priority)
+      expect(Date.parse(json['items'][0]['due_date'])).to eq(item.due_date)
+      expect(json['items'].length).to eq(1)
     end
 
     it 'creates a new item for the user' do

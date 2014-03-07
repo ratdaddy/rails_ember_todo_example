@@ -5,7 +5,7 @@
 #
 #= require handlebars
 #= require ember
-#= require ./lib/ember-data
+#= require ember-data-v1.0.0-beta.3
 #= require_self
 #= require todo
 #
