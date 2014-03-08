@@ -67,7 +67,13 @@
   .item-action {
     @include grid-column(1);
 
-    button {
+    button.save {
+      @include button($padding: $button-sml, $radius: true, $full-width: true, $bg: green);
+      padding: 7px 0;
+      margin-top: 10px;
+    }
+
+    button.destroy {
       @include button($padding: $button-sml, $radius: true, $full-width: true);
       padding: 7px 0;
     }

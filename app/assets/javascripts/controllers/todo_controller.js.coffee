@@ -36,6 +36,7 @@ Todo.ItemController = Ember.ObjectController.extend
 
     editingFinished: ->
       @set 'isEditing', false
+      @send 'acceptChanges'
 
     acceptChanges: ->
       @set 'isEditing', false

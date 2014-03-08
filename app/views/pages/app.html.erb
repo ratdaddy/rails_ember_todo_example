@@ -18,29 +18,47 @@
         {{input type="text" id="new-item" placeholder="Enter new item" value=newSummary action="createItem"}}
       </div>
       <div class="item-priority">
-        {{view Ember.Select content=priorities value=newPriority}}
+        {{item-priority-input value=newPriority}}
       </div>
       <div class="item-due-date">
-        {{edit-item-due-date class="datepicker" placeholder="Enter date" value=newDueDate}}
+        {{enter-item-due-date class="datepicker" placeholder="Enter date" value=newDueDate}}
       </div>
       <div class="item-action">
-        <button {{action "createItem"}}>Create</button>
+        <button class="save" {{action "createItem"}}>Create</button>
       </div>
     </div>
 
     {{#each itemController="item"}}
-      <div class="item-row">
+      <div class="item-row" {{action "editItem" on="doubleClick"}}>
         <div class="item-completed">{{input type="checkbox" checked=isCompleted class="toggle"}}</div>
-        <div class="item-summary" {{bind-attr class="isCompleted:completed isEditing:editing"}} {{action "editItem" on="doubleClick"}}>
+        <div class="item-summary" {{bind-attr class="isCompleted:completed isEditing:editing"}}>
           {{#if isEditing}}
-            {{edit-item class="edit" value=summary focus-out="acceptChanges" insert-newline="editingFinished"}}
+            {{edit-item class="edit" value=summary insert-newline="editingFinished"}}
           {{else}}
             {{summary}}
           {{/if}}
         </div>
-        <div class="item-priority">{{priority}}</div>
-        <div class="item-due-date">{{dueDateString}}</div>
-        <div class="item-action"><button {{action "removeItem"}} class="destroy">Delete</button></div>
+        <div class="item-priority">
+          {{#if isEditing}}
+            {{item-priority-input value=newPriority}}
+          {{else}}
+            {{priority}}
+          {{/if}}
+        </div>
+        <div class="item-due-date">
+          {{#if isEditing}}
+            {{edit-item-due-date class="datepicker" value=due_date}}
+          {{else}}
+            {{dueDateString}}
+          {{/if}}
+        </div>
+        <div class="item-action">
+          {{#if isEditing}}
+            <button class="save" {{action "acceptChanges"}}>Save</button>
+          {{else}}
+            <button {{action "removeItem"}} class="destroy">Delete</button>
+          {{/if}}
+        </div>
       </div>
     {{/each}}
   </section>
