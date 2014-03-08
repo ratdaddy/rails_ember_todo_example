@@ -2,7 +2,6 @@ Todo.ItemsController = Ember.ArrayController.extend
   actions:
     createItem: ->
       summary = @get('newSummary')
-      console.log @get('newDueDate')
       due_date = Date.parseDate(@get('newDueDate'))
       priority = @get('newPriority')
       return if !summary.trim()
@@ -15,6 +14,7 @@ Todo.ItemsController = Ember.ArrayController.extend
       )
 
       @set 'newSummary', ''
+      @set 'newDueDate', ''
 
       item.save()
 

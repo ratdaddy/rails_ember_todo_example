@@ -21,7 +21,7 @@
         {{view Ember.Select content=priorities value=newPriority}}
       </div>
       <div class="item-due-date">
-        {{input type="text" placeholder="Enter date" value=newDueDate}}
+        {{edit-item-due-date class="datepicker" placeholder="Enter date" value=newDueDate}}
       </div>
       <div class="item-action">
         <button {{action "createItem"}}>Create</button>
