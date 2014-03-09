@@ -8,8 +8,8 @@
     <div class="item-row header-row">
       <div class="item-completed">Done</div>
       <div class="item-summary"></div>
-      <div class="item-priority">Priority</div>
-      <div class="item-due-date">Due</div>
+      <div class="item-priority" {{action sortByPriority on="click"}}>Priority</div>
+      <div class="item-due-date sort-control" {{action sortByDate on="click"}}>Due</div>
     </div>
 
     <div class="item-row">

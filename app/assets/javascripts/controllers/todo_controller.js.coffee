@@ -12,17 +12,24 @@ Todo.ItemsController = Ember.ArrayController.extend
       
       return if !ret_obj.summary? || !ret_obj.summary.trim()
 
-      item = @store.createRecord('item', ret_obj
-        #summary: summary
-        #is_completed: false
-        #due_date: due_date
-        #priority: priority
-      )
+      item = @store.createRecord('item', ret_obj)
 
       @set 'newSummary', ''
       @set 'locale_due_date', ''
 
       item.save()
+
+    sortByPriority: ->
+      sortProp = @get('sortProperties')
+      sortOrder = @get('sortAscending')
+      @set 'sortProperties', ['priority']
+      @set 'sortAscending', !sortProp? || sortProp[0] != 'priority' || !sortOrder
+
+    sortByDate: ->
+      sortProp = @get('sortProperties')
+      sortOrder = @get('sortAscending')
+      @set 'sortProperties', ['due_date']
+      @set 'sortAscending', !sortProp? || sortProp[0] != 'due_date' || !sortOrder
 
   priorities: [1, 2, 3]
 
