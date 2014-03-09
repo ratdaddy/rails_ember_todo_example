@@ -4,17 +4,11 @@ Todo.EditItemView = Ember.TextField.extend
 
 Ember.Handlebars.helper 'edit-item', Todo.EditItemView
 
-Todo.EnterItemDueDateView = Ember.TextField.extend
+Todo.ItemDueDateInputView = Ember.TextField.extend
   didInsertElement: ->
-    @$().datepicker()
+    @$().datepicker dateFormat: "m/d/yy"
 
-Ember.Handlebars.helper 'enter-item-due-date', Todo.EnterItemDueDateView
-
-Todo.EditItemDueDateView = Ember.TextField.extend
-  didInsertElement: ->
-    @$().datepicker()
-
-Ember.Handlebars.helper 'edit-item-due-date', Todo.EditItemDueDateView
+Ember.Handlebars.helper 'item-due-date-input', Todo.ItemDueDateInputView
 
 Todo.ItemPriorityInput = Ember.Select.extend
   content: [1, 2, 3]

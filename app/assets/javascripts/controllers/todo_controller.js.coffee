@@ -1,20 +1,26 @@
 Todo.ItemsController = Ember.ArrayController.extend
   actions:
     createItem: ->
-      summary = @get('newSummary')
-      due_date = Date.parseDate(@get('newDueDate'))
-      priority = @get('newPriority')
-      return if !summary.trim()
-
-      item = @store.createRecord('item',
-        summary: summary
+      ret_obj =
         is_completed: false
-        due_date: due_date
-        priority: priority
+        summary: @get('newSummary')
+        priority: @get('priority')
+
+      date = @get('locale_due_date')
+      if date? && date.length > 0
+        ret_obj.due_date = Date.parseDate(@get('locale_due_date'))
+      
+      return if !ret_obj.summary? || !ret_obj.summary.trim()
+
+      item = @store.createRecord('item', ret_obj
+        #summary: summary
+        #is_completed: false
+        #due_date: due_date
+        #priority: priority
       )
 
       @set 'newSummary', ''
-      @set 'newDueDate', ''
+      @set 'locale_due_date', ''
 
       item.save()
 
@@ -40,6 +46,12 @@ Todo.ItemController = Ember.ObjectController.extend
 
     acceptChanges: ->
       @set 'isEditing', false
+      date = @get('locale_due_date')
+      if date? && date.length > 0
+        @set 'due_date', Date.parseDate(date)
+      else
+        @set 'due_date', null
+
       if Ember.isEmpty(@get('model.summary'))
         @send 'removeItem'
       else

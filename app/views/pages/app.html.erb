@@ -18,10 +18,10 @@
         {{input type="text" id="new-item" placeholder="Enter new item" value=newSummary action="createItem"}}
       </div>
       <div class="item-priority">
-        {{item-priority-input value=newPriority}}
+        {{item-priority-input value=priority}}
       </div>
       <div class="item-due-date">
-        {{enter-item-due-date class="datepicker" placeholder="Enter date" value=newDueDate}}
+        {{item-due-date-input class="datepicker" placeholder="Enter date" value=locale_due_date}}
       </div>
       <div class="item-action">
         <button class="save" {{action "createItem"}}>Create</button>
@@ -40,16 +40,16 @@
         </div>
         <div class="item-priority">
           {{#if isEditing}}
-            {{item-priority-input value=newPriority}}
+            {{item-priority-input value=priority}}
           {{else}}
             {{priority}}
           {{/if}}
         </div>
         <div class="item-due-date">
           {{#if isEditing}}
-            {{edit-item-due-date class="datepicker" value=due_date}}
+            {{item-due-date-input class="datepicker" value=locale_due_date}}
           {{else}}
-            {{dueDateString}}
+            {{locale_due_date}}
           {{/if}}
         </div>
         <div class="item-action">

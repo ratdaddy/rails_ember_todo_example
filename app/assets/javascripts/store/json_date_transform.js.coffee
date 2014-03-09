@@ -1,6 +1,12 @@
 Todo.JsondateTransform = DS.Transform.extend
   deserialize: (str) ->
-    Date.parseDate(str)
+    if str? && str.length > 0
+      Date.parseDate(str)
+    else
+      null
 
   serialize: (date) ->
-    date.toLocalDateString()
+    if date?
+      date.toLocalDateString()
+    else
+      ''
