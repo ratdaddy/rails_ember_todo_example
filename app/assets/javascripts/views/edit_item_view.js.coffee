@@ -1,6 +1,6 @@
 Todo.EditItemView = Ember.TextField.extend
   didInsertElement: ->
-    @$().focus()
+    @$().focusAtEnd()
 
 Ember.Handlebars.helper 'edit-item', Todo.EditItemView
 
